@@ -1,0 +1,220 @@
+{
+ "uid": "dbwars-big",
+ "title": "Database Wars \u00b7 20M orders (more data than memory)",
+ "timezone": "utc",
+ "schemaVersion": 39,
+ "refresh": "",
+ "time": {
+  "from": "2026-10-09T21:18:43.000Z",
+  "to": "2026-10-09T21:27:46.000Z"
+ },
+ "panels": [
+  {
+   "id": 1,
+   "type": "timeseries",
+   "title": "Postgres \u00b7 requests per second (k6)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 12,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_requests_per_second{db=\"postgres\",test=\"big\"}",
+     "legendFormat": "postgres",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "reqps",
+     "min": 0,
+     "max": 12000,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5B9BD5"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   },
+   "timeShift": "773s",
+   "hideTimeOverride": true
+  },
+  {
+   "id": 2,
+   "type": "timeseries",
+   "title": "Postgres \u00b7 p95 response time (k6)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 12,
+    "y": 0,
+    "w": 12,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_p95_ms{db=\"postgres\",test=\"big\"}",
+     "legendFormat": "postgres",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "ms",
+     "min": 0,
+     "max": 700,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5B9BD5"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   },
+   "timeShift": "773s",
+   "hideTimeOverride": true
+  },
+  {
+   "id": 4,
+   "type": "timeseries",
+   "title": "MariaDB \u00b7 requests per second (k6)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 13,
+    "w": 12,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_requests_per_second{db=\"mariadb\",test=\"big\"}",
+     "legendFormat": "mariadb",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "reqps",
+     "min": 0,
+     "max": 12000,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#E8A15C"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   }
+  },
+  {
+   "id": 5,
+   "type": "timeseries",
+   "title": "MariaDB \u00b7 p95 response time (k6)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 12,
+    "y": 13,
+    "w": 12,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_p95_ms{db=\"mariadb\",test=\"big\"}",
+     "legendFormat": "mariadb",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "ms",
+     "min": 0,
+     "max": 700,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#E8A15C"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   }
+  }
+ ],
+ "timepicker": {
+  "hidden": false
+ }
+}

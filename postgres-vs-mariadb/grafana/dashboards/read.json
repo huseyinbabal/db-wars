@@ -1,0 +1,322 @@
+{
+ "uid": "dbwars-read",
+ "title": "Database Wars \u00b7 Read test (95% reads)",
+ "timezone": "utc",
+ "schemaVersion": 39,
+ "refresh": "",
+ "time": {
+  "from": "2026-10-09T20:30:56.000Z",
+  "to": "2026-10-09T20:40:00.000Z"
+ },
+ "panels": [
+  {
+   "id": 1,
+   "type": "timeseries",
+   "title": "Postgres \u00b7 requests per second (k6)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 8,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_requests_per_second{db=\"postgres\",test=\"read\"}",
+     "legendFormat": "postgres",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "reqps",
+     "min": 0,
+     "max": 15000,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5B9BD5"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   },
+   "timeShift": "642s",
+   "hideTimeOverride": true
+  },
+  {
+   "id": 2,
+   "type": "timeseries",
+   "title": "Postgres \u00b7 p95 response time (k6)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 8,
+    "y": 0,
+    "w": 8,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_p95_ms{db=\"postgres\",test=\"read\"}",
+     "legendFormat": "postgres",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "ms",
+     "min": 0,
+     "max": 700,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5B9BD5"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   },
+   "timeShift": "642s",
+   "hideTimeOverride": true
+  },
+  {
+   "id": 3,
+   "type": "timeseries",
+   "title": "Postgres \u00b7 database CPU busy",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 16,
+    "y": 0,
+    "w": 8,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_db_cpu_busy_percent{db=\"postgres\",test=\"read\"}",
+     "legendFormat": "postgres",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percent",
+     "min": 0,
+     "max": 100,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#5B9BD5"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   },
+   "timeShift": "642s",
+   "hideTimeOverride": true
+  },
+  {
+   "id": 4,
+   "type": "timeseries",
+   "title": "MariaDB \u00b7 requests per second (k6)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 0,
+    "y": 13,
+    "w": 8,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_requests_per_second{db=\"mariadb\",test=\"read\"}",
+     "legendFormat": "mariadb",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "reqps",
+     "min": 0,
+     "max": 15000,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#E8A15C"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   }
+  },
+  {
+   "id": 5,
+   "type": "timeseries",
+   "title": "MariaDB \u00b7 p95 response time (k6)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 8,
+    "y": 13,
+    "w": 8,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_p95_ms{db=\"mariadb\",test=\"read\"}",
+     "legendFormat": "mariadb",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "ms",
+     "min": 0,
+     "max": 700,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#E8A15C"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   }
+  },
+  {
+   "id": 6,
+   "type": "timeseries",
+   "title": "MariaDB \u00b7 database CPU busy",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "gridPos": {
+    "x": 16,
+    "y": 13,
+    "w": 8,
+    "h": 13
+   },
+   "targets": [
+    {
+     "refId": "A",
+     "expr": "bench_db_cpu_busy_percent{db=\"mariadb\",test=\"read\"}",
+     "legendFormat": "mariadb",
+     "interval": "5s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percent",
+     "min": 0,
+     "max": 100,
+     "color": {
+      "mode": "fixed",
+      "fixedColor": "#E8A15C"
+     },
+     "custom": {
+      "lineWidth": 4,
+      "fillOpacity": 18,
+      "showPoints": "never",
+      "spanNulls": false,
+      "axisLabel": ""
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "showLegend": false
+    },
+    "tooltip": {
+     "mode": "single"
+    }
+   }
+  }
+ ],
+ "timepicker": {
+  "hidden": false
+ }
+}
