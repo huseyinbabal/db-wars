@@ -84,6 +84,8 @@ k6 run -o experimental-prometheus-rw -e BASE_URL=http://<app private ip>:8000 \
   -e WRITES=0.05 -e USERS=100,200,400,800,1600,3200 -e HOLD=80 users.js
 ```
 
+The first read round and the first write round held each level for 170 seconds and stopped at 1,600 users (`./batch-users.sh read 0.05 100,200,400,800,1600 170`, the same with `write 0.5`); the second and third rounds use the command above.
+
 `WRITES` is the share of requests that create an order. The reads are 50% product by id, 30% product list, 20% order by id.
 
 ## Running it
@@ -109,7 +111,7 @@ Equal settings, pool of 100, 5 million orders unless noted. No request failed in
 
 | Test | Runs | PostgreSQL | MariaDB | Difference |
 | --- | --- | --- | --- | --- |
-| Reads (95% reads), up to 800 users | 3 | 7,900 req/s, p95 3 ms | 7,900 req/s, p95 3 ms | none |
+| Reads (95% reads), up to 800 users | 3 | 7,805 / 7,910 / 7,912 req/s, p95 3 to 5 ms | 7,789 / 7,902 / 7,906 req/s, p95 3 to 6 ms | about the same |
 | Reads, ceiling | 3 | 12,527 / 13,324 / 13,435 req/s | 10,344 / 10,772 / 11,016 req/s | Postgres +21% to +24% |
 | Reads, p95 at 1,600 users | 3 | 55 to 85 ms | 117 to 147 ms | |
 | Writes (50% writes), ceiling | 3 | 4,122 / 4,385 / 4,277 req/s | 3,991 / 4,085 / 4,154 req/s | Postgres +3% to +7% |
@@ -118,7 +120,7 @@ Equal settings, pool of 100, 5 million orders unless noted. No request failed in
 
 What the numbers say and what they do not:
 
-- Up to 800 users the two are the same. The database was not the limit there.
+- Up to 800 users the two are almost the same (within 0.2% in req/s). The database was not the limit there.
 - With mostly reads, Postgres reaches a higher ceiling. At 800 users, doing the same work, the database machine had 35% of its CPU free with Postgres and 23% with MariaDB. I measured that; I did not measure why.
 - The 20-million-order round is a single run. The first spike run had MariaDB 6% ahead and the next three had Postgres ahead by up to 4%, so a single run is not enough to call a winner at that distance.
 - This is one app, one machine size and one pool size.
