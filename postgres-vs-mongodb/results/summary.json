@@ -1,0 +1,239 @@
+{
+ "reads": {
+  "runs": [
+   "read-1",
+   "read-2",
+   "read-3"
+  ],
+  "postgres": {
+   "sustained": 4977,
+   "each": [
+    5946,
+    4966,
+    4977
+   ],
+   "p95": 25.5,
+   "above_range": false,
+   "top": 12000
+  },
+  "mongo": {
+   "sustained": 8953,
+   "each": [
+    8941,
+    8953,
+    8953
+   ],
+   "p95": 37.7,
+   "above_range": false,
+   "top": 12000
+  }
+ },
+ "inserts": {
+  "runs": [
+   "insert-3",
+   "insert-4",
+   "insert-5"
+  ],
+  "postgres": {
+   "sustained": 5964,
+   "each": [
+    5964,
+    5937,
+    5972
+   ],
+   "p95": 33.5,
+   "above_range": false,
+   "top": 12000
+  },
+  "mongo": {
+   "sustained": 3955,
+   "each": [
+    3955,
+    1984,
+    3971
+   ],
+   "p95": 45.4,
+   "above_range": false,
+   "top": 12000
+  }
+ },
+ "updates": {
+  "runs": [
+   "update-1",
+   "update-2",
+   "update-3"
+  ],
+  "postgres": {
+   "sustained": 4962,
+   "each": [
+    4939,
+    4962,
+    4978
+   ],
+   "p95": 29.5,
+   "above_range": false,
+   "top": 12000
+  },
+  "mongo": {
+   "sustained": 3967,
+   "each": [
+    3941,
+    4963,
+    3967
+   ],
+   "p95": 32.4,
+   "above_range": false,
+   "top": 12000
+  }
+ },
+ "shop (defaults)": {
+  "runs": [
+   "shop-1",
+   "shop-2",
+   "shop-3"
+  ],
+  "postgres": {
+   "sustained": 0,
+   "each": [
+    0,
+    0,
+    0
+   ],
+   "p95": null,
+   "above_range": false,
+   "top": 500
+  },
+  "mongo": {
+   "sustained": 4980,
+   "each": [
+    4789,
+    4991,
+    4980
+   ],
+   "p95": 26.3,
+   "above_range": true,
+   "top": 7000
+  }
+ },
+ "shop (fastupdate off)": {
+  "runs": [
+   "shop-tuned-1b",
+   "shop-tuned-2",
+   "shop-tuned-3"
+  ],
+  "postgres": {
+   "sustained": 5474,
+   "each": [
+    4490,
+    5474,
+    5487
+   ],
+   "p95": 25.4,
+   "above_range": false,
+   "top": 7000
+  },
+  "mongo": {
+   "sustained": 4982,
+   "each": [
+    4486,
+    4982,
+    4985
+   ],
+   "p95": 25.9,
+   "above_range": false,
+   "top": 7000
+  }
+ },
+ "inserts (fastupdate off)": {
+  "runs": [
+   "insert-tuned-1"
+  ],
+  "postgres": {
+   "sustained": 2970,
+   "each": [
+    2970
+   ],
+   "p95": 9.9,
+   "above_range": false,
+   "top": 12000
+  },
+  "mongo": {
+   "sustained": 3966,
+   "each": [
+    3966
+   ],
+   "p95": 44.9,
+   "above_range": false,
+   "top": 12000
+  }
+ },
+ "big docs: updates": {
+  "runs": [
+   "bigdoc-update-1"
+  ],
+  "postgres": {
+   "sustained": 1492,
+   "each": [
+    1492
+   ],
+   "p95": 17.9,
+   "above_range": false,
+   "top": 6000
+  },
+  "mongo": {
+   "sustained": 4479,
+   "each": [
+    4479
+   ],
+   "p95": 35.4,
+   "above_range": false,
+   "top": 6000
+  }
+ },
+ "big docs: reads": {
+  "runs": [
+   "bigdoc-read-1"
+  ],
+  "postgres": {
+   "sustained": 4988,
+   "each": [
+    4988
+   ],
+   "p95": 24.6,
+   "above_range": false,
+   "top": 6000
+  },
+  "mongo": {
+   "sustained": 5980,
+   "each": [
+    5980
+   ],
+   "p95": 19.6,
+   "above_range": true,
+   "top": 6000
+  }
+ },
+ "shop (fastupdate off), hosts swapped": {
+  "runs": [
+   "shop-tuned-swap"
+  ],
+  "postgres": {
+   "sustained": 6477,
+   "each": [
+    6477
+   ],
+   "p95": 34.2,
+   "above_range": false,
+   "top": 7000
+  },
+  "mongo": {
+   "sustained": 4487,
+   "each": [
+    4487
+   ],
+   "p95": 28.6,
+   "above_range": false,
+   "top": 7000
+  }
+ }
+}

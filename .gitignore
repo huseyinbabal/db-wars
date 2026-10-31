@@ -3,3 +3,4 @@ results/
 ssh.conf
 *.env
 .DS_Store
+run/
