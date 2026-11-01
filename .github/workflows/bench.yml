@@ -42,5 +42,5 @@ jobs:
         with:
           name: bench-${{ matrix.folder }}
           path: results/${{ matrix.folder }}.json
-      - if: failure()
-        run: tail -n 40 results/*.log || true
+      - if: always()
+        run: tail -n 60 results/*.log || true
