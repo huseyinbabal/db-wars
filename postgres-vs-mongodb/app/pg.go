@@ -142,7 +142,7 @@ func (p *pg) seed(ctx context.Context, orders, nItems int) error {
 	}
 	for _, s := range [][2]string{
 		{"index customer", "CREATE INDEX orders_customer ON orders (((doc->'customer'->>'id')::bigint), id)"},
-		{"index items", "CREATE INDEX orders_items ON orders USING gin ((doc->'items') WITH (fastupdate = off) jsonb_path_ops)"},
+		{"index items", "CREATE INDEX orders_items ON orders USING gin ((doc->'items') jsonb_path_ops) WITH (fastupdate = off)"},
 		{"vacuum analyze", "VACUUM ANALYZE orders"},
 	} {
 		if err := run(s[0], s[1]); err != nil {
