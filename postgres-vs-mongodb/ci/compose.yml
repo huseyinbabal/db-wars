@@ -12,5 +12,5 @@ services:
   mongo:
     image: mongo:8.2.12
     ports: ["127.0.0.1:27017:27017"]
-    command: [--wiredTigerCacheSizeGB, "1"]
+    command: [--wiredTigerCacheSizeGB, "0.25"]
     healthcheck: { test: [CMD, mongosh, --quiet, --eval, "db.runCommand({ping:1}).ok"], interval: 1s, retries: 60 }
