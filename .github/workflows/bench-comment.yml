@@ -30,7 +30,12 @@ jobs:
           [ -n "$(ls results/*.json 2>/dev/null)" ] || { echo "no results"; exit 0; }
           PR=$(python3 .github/bench/render.py results --pr)
           [ "$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR" --jq .head.sha)" = "$HEAD_SHA" ] || { echo "PR $PR is not at $HEAD_SHA"; exit 0; }
-          python3 .github/bench/render.py results > body.md
+          gh api "repos/$GITHUB_REPOSITORY/pulls/$PR/files" --paginate --jq '.[] | {filename, patch}' > files.jsonl
+          if python3 .github/bench/guard.py < files.jsonl > note.md; then
+            python3 .github/bench/render.py results > body.md; cat note.md >> body.md
+          else
+            cp note.md body.md
+          fi
           ID=$(gh api "repos/$GITHUB_REPOSITORY/issues/$PR/comments" --paginate --jq '.[] | select(.body | startswith("<!-- bench -->")) | .id' | head -n1)
           if [ -n "$ID" ]; then gh api -X PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$ID" -F body=@body.md >/dev/null
           else gh api "repos/$GITHUB_REPOSITORY/issues/$PR/comments" -F body=@body.md >/dev/null; fi
