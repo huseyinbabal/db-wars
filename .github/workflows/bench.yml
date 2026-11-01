@@ -1,0 +1,46 @@
+# Short load test for every comparison a pull request changes. Runs the PR's code with no secrets and a read-only token,
+# so it is safe for forks. bench-comment.yml posts the numbers it leaves behind.
+name: Bench
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  detect:
+    runs-on: ubuntu-24.04
+    outputs:
+      folders: ${{ steps.changed.outputs.folders }}
+    steps:
+      - uses: actions/checkout@v5
+        with: { fetch-depth: 2 }
+      - id: changed
+        run: echo "folders=$(.github/bench/changed.sh)" >> "$GITHUB_OUTPUT"
+  bench:
+    needs: detect
+    if: needs.detect.outputs.folders != '[]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        folder: ${{ fromJSON(needs.detect.outputs.folders) }}
+    steps:
+      - uses: actions/checkout@v5
+        with: { fetch-depth: 2 }
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: ${{ matrix.folder }}/app/go.mod
+          cache-dependency-path: ${{ matrix.folder }}/app/go.sum
+      - name: Base and PR, each database
+        env:
+          FOLDER: ${{ matrix.folder }}
+          PR: ${{ github.event.pull_request.number }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: .github/bench/run.sh "$FOLDER" "$PR" "$HEAD_SHA" "results/$FOLDER.json"
+      - run: python3 .github/bench/render.py results >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bench-${{ matrix.folder }}
+          path: results/${{ matrix.folder }}.json
+      - if: always()
+        run: tail -n 60 results/*.log || true

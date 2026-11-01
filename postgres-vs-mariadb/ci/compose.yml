@@ -1,0 +1,25 @@
+# Same settings as setup/db.sh, without the login setup: tune here to see the effect in a pull request.
+services:
+  postgres:
+    image: postgres:18
+    environment: { POSTGRES_USER: shop, POSTGRES_PASSWORD: bench, POSTGRES_DB: shop }
+    ports: ["127.0.0.1:5432:5432"]
+    shm_size: 1g
+    command: >-
+      -c max_connections=200 -c shared_buffers=1GB -c effective_cache_size=3GB -c max_wal_size=2GB
+      -c wal_level=minimal -c max_wal_senders=0 -c fsync=on -c synchronous_commit=on
+      -c default_transaction_isolation='read committed'
+    healthcheck: { test: [CMD, pg_isready, -U, shop, -d, shop], interval: 1s, retries: 60 }
+  mariadb:
+    image: mariadb:12.3
+    environment: { MARIADB_USER: shop, MARIADB_PASSWORD: bench, MARIADB_DATABASE: shop, MARIADB_RANDOM_ROOT_PASSWORD: "1" }
+    ports: ["127.0.0.1:3306:3306"]
+    command:
+      - --max-connections=200
+      - --innodb-buffer-pool-size=2560M
+      - --innodb-log-file-size=2G
+      - --innodb-flush-log-at-trx-commit=1
+      - --skip-log-bin
+      - --transaction-isolation=READ-COMMITTED
+      - --character-set-server=utf8mb4
+    healthcheck: { test: [CMD, healthcheck.sh, --connect, --innodb_initialized], interval: 1s, retries: 60 }
