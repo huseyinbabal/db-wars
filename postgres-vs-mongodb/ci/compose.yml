@@ -14,3 +14,4 @@ services:
     ports: ["127.0.0.1:27017:27017"]
     command: [--wiredTigerCacheSizeGB, "1"]
     healthcheck: { test: [CMD, mongosh, --quiet, --eval, "db.runCommand({ping:1}).ok"], interval: 1s, retries: 60 }
+# noise test
