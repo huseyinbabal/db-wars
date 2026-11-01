@@ -21,25 +21,39 @@ def val(r, k, f='{:,.0f}'):
     if r['error'] or r[k] is None: return 'error'
     return f.format(r[k])
 
-def delta(b, p, k):
+NOISE = 5   # percent; smaller changes can come from the runner alone
+
+def delta(b, p, k, higher_is_better):
+    """The arrow says which way the number moved, the colour whether that is good."""
     if not b or not p or not b[k] or p[k] is None or b['error'] or p['error']: return '–'
-    return f'{(p[k] - b[k]) / b[k] * 100:+.0f}%'
+    change = (p[k] - b[k]) / b[k] * 100
+    if abs(change) < NOISE: return f'⚪ {change:+.0f}%'
+    return f'{"🟢" if (change > 0) == higher_is_better else "🔴"} {"▲" if change > 0 else "▼"} {abs(change):.0f}%'
 
 def table(folder, changed, rows):
     out = [f'### `{folder}`', '', '| Database | req/s base | req/s PR | change | p95 ms base | p95 ms PR | change | p99 ms PR | failed PR |', '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |']
     for db, v in rows.items():
         b, p = v.get('base'), v.get('pr')
         stop = ' (stopped early)' if p and p['stopped'] else ''
-        out.append(f'| {db} | {val(b, "rps")} | {val(p, "rps")}{stop} | {delta(b, p, "rps")} | {val(b, "p95", "{:,.1f}")} | {val(p, "p95", "{:,.1f}")} | {delta(b, p, "p95")} | {val(p, "p99", "{:,.1f}")} | {val(p, "failed", "{:.2f}%")} |')
+        out.append(f'| {db} | {val(b, "rps")} | {val(p, "rps")}{stop} | {delta(b, p, "rps", True)} | {val(b, "p95", "{:,.1f}")} | {val(p, "p95", "{:,.1f}")} | {delta(b, p, "p95", False)} | {val(p, "p99", "{:,.1f}")} | {val(p, "failed", "{:.2f}%")} |')
     if changed: out += ['', 'The k6 script changed in this PR, so base and PR did not get the same load.']
-    return out
+    return out + published(folder)
+
+def published(folder):
+    """The results from dedicated machines, for reference. A runner can't be compared with them."""
+    try: data = json.load(open(f'{folder}/results/published.json'))
+    except OSError: return []
+    dbs = list(data['rounds'][0]['values'])
+    out = ['', f'<details><summary>Published results ({data["metric"]})</summary>', '', data['machines'] + '.', '', '| Round | Runs | ' + ' | '.join(dbs) + ' |', '| --- | ---: |' + ' ---: |' * len(dbs)]
+    out += [f'| {r["round"]} | {r["runs"]} | ' + ' | '.join(r['values'][d] for d in dbs) + ' |' for r in data['rounds']]
+    return out + ['', '</details>']
 
 results = [load(p) for p in sorted(glob.glob(f'{sys.argv[1]}/*.json'))]
 pr = {r[1] for r in results}
 if len(pr) != 1: sys.exit('results disagree on the PR number')
 if '--pr' in sys.argv:
     print(pr.pop()); sys.exit()
-body = ['<!-- bench -->', '## Bench', '', 'About a minute per run: app, database and k6 share one GitHub runner, base and PR one after the other. Compare the numbers with each other; they say nothing about real machines, and a change of a few percent can be noise.', '']
+body = ['<!-- bench -->', '## Bench', '', f'About a minute per run: app, database and k6 share one GitHub runner, base and PR one after the other. 🟢 is better, 🔴 is worse, ⚪ is a change under {NOISE}%, which the runner alone can cause. These numbers only compare base with PR.', '']
 for folder, _, changed, rows in results:
     body += table(folder, changed, rows) + ['']
 print('\n'.join(body))

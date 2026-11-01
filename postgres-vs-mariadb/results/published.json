@@ -1,0 +1,10 @@
+{
+  "machines": "2 dedicated vCPUs and 4 GB per database, 5 million orders unless noted",
+  "metric": "req/s, middle run",
+  "rounds": [
+    {"round": "Reads, up to 800 users", "runs": 3, "values": {"postgres": "7,910", "mariadb": "7,902"}},
+    {"round": "Reads, ceiling", "runs": 3, "values": {"postgres": "13,324", "mariadb": "10,772"}},
+    {"round": "Writes, ceiling", "runs": 3, "values": {"postgres": "4,277", "mariadb": "4,085"}},
+    {"round": "20 million orders, ceiling", "runs": 1, "values": {"postgres": "9,827", "mariadb": "10,346"}}
+  ]
+}
