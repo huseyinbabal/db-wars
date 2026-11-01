@@ -10,24 +10,35 @@ def number(v):
 def load(path):
     data = json.load(open(path))
     if not NAME.match(data['folder']): raise ValueError('bad folder')
-    rows = {}
+    runs = {}
     for r in data['rows']:
         if NAME.match(r['db']) and r['version'] in ('base', 'pr'):
-            rows.setdefault(r['db'], {})[r['version']] = {k: number(r.get(k)) for k in ('rps', 'p95', 'p99', 'failed')} | {'stopped': r.get('status') == 99, 'error': r.get('status') not in (0, 99)}
+            runs.setdefault(r['db'], {}).setdefault(r['version'], []).append(r)
+    rows = {db: {v: merge(rs) for v, rs in vs.items()} for db, vs in runs.items()}
     return data['folder'], int(data['pr']), data['k6_changed'] is True, rows
+
+def merge(rs):
+    """Both runs of one version: the mean for the table, the runs for the comparison. A failed run doesn't count."""
+    good = [r for r in rs if r.get('status') in (0, 99)]
+    out = {'stopped': any(r.get('status') == 99 for r in good), 'error': not good, 'runs': {}}
+    for k in ('rps', 'p95', 'p99', 'failed'):
+        vals = [v for v in (number(r.get(k)) for r in good) if v is not None]
+        out['runs'][k] = vals; out[k] = sum(vals) / len(vals) if vals else None
+    return out
 
 def val(r, k, f='{:,.0f}'):
     if not r: return '–'
     if r['error'] or r[k] is None: return 'error'
     return f.format(r[k])
 
-NOISE = {'rps': 5, 'p95': 25}   # percent; smaller changes can come from the runner alone (same load, no real change: req/s moved 2%, p95 19%)
+NOISE = {'rps': 5, 'p95': 25}   # percent; smaller changes can come from the runner alone
 
 def delta(b, p, k, higher_is_better):
-    """The arrow says which way the number moved, the colour whether that is good."""
+    """The arrow says which way the number moved, the colour whether that is good. Grey unless every PR run landed on the same side of every base run."""
     if not b or not p or not b[k] or p[k] is None or b['error'] or p['error']: return '–'
     change = (p[k] - b[k]) / b[k] * 100
-    if abs(change) < NOISE[k]: return f'⚪ {change:+.0f}%'
+    apart = min(p['runs'][k]) > max(b['runs'][k]) or max(p['runs'][k]) < min(b['runs'][k])
+    if abs(change) < NOISE[k] or not apart: return f'⚪ {change:+.0f}%'
     return f'{"🟢" if (change > 0) == higher_is_better else "🔴"} {"▲" if change > 0 else "▼"} {abs(change):.0f}%'
 
 def table(folder, changed, rows):
@@ -53,7 +64,7 @@ pr = {r[1] for r in results}
 if len(pr) != 1: sys.exit('results disagree on the PR number')
 if '--pr' in sys.argv:
     print(pr.pop()); sys.exit()
-body = ['<!-- bench -->', '## Bench', '', f'About a minute per run: app, database and k6 share one GitHub runner, base and PR one after the other. 🟢 is better, 🔴 is worse, ⚪ is a change the runner alone can cause (under {NOISE["rps"]}% for req/s, {NOISE["p95"]}% for p95). These numbers only compare base with PR.', '']
+body = ['<!-- bench -->', '## Bench', '', f'App, database and k6 share one GitHub runner, and each database runs base, PR, PR, base for about a minute each. The table shows the mean. 🟢 is better, 🔴 is worse, ⚪ is no clear change: the runs overlap, or the change is under {NOISE["rps"]}% for req/s or {NOISE["p95"]}% for p95. These numbers only compare base with PR.', '']
 for folder, _, changed, rows in results:
     body += table(folder, changed, rows) + ['']
 print('\n'.join(body))

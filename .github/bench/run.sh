@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One comparison on one runner: each database with the base branch's code, then with the PR's, so the numbers can be set side by side.
+# One comparison on one runner: each database runs base, PR, PR, base, so a slow moment on the runner doesn't land on one side only.
 #   run.sh <folder> <pr number> <head sha> <results json>
 # ci/bench.conf in the folder says what to run, ci/compose.yml starts the databases.
 set -uo pipefail
@@ -11,9 +11,9 @@ ROWS="$WORK/rows.jsonl"; : > "$ROWS"
 
 row() { python3 .github/bench/row.py "$@" >> "$ROWS"; }
 
-one() {  # <database> <base|pr> <folder of that version>
-  local db=$1 version=$2 dir=$3 status=0
-  local summary="$WORK/$db-$version/summary.json"
+one() {  # <database> <base|pr> <run number> <folder of that version>
+  local db=$1 version=$2 run=$3 dir=$4 status=0
+  local summary="$WORK/$db-$version-$run/summary.json"
   mkdir -p "$(dirname "$summary")"; chmod 777 "$(dirname "$summary")"
   (
     source "$dir/ci/bench.conf"
@@ -36,8 +36,11 @@ one() {  # <database> <base|pr> <folder of that version>
 
 source "$FOLDER/ci/bench.conf"
 for db in $DBS; do
-  [ -f "$WORK/base/$FOLDER/ci/bench.conf" ] && one "$db" base "$WORK/base/$FOLDER"
-  one "$db" pr "$ROOT/$FOLDER"
+  has_base=false; [ -f "$WORK/base/$FOLDER/ci/bench.conf" ] && has_base=true
+  $has_base && one "$db" base 1 "$WORK/base/$FOLDER"
+  one "$db" pr 1 "$ROOT/$FOLDER"
+  one "$db" pr 2 "$ROOT/$FOLDER"
+  $has_base && one "$db" base 2 "$WORK/base/$FOLDER"
 done
 
 k6_changed=false
