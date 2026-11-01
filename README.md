@@ -9,6 +9,6 @@ The same application, a different database, measured with k6. Each folder is one
 
 ## Pull requests
 
-A pull request that changes a comparison folder gets a short load test: the Go app, k6 and each database on one GitHub runner, first with the base branch's code, then with the PR's. The results come back as a table in a PR comment, so you can see whether your change moved the numbers. Each folder sets up its run in `ci/bench.env` and `ci/compose.yml`; database settings you want tested go in `ci/compose.yml`, because `setup/` is only used on the real machines.
+A pull request that changes a comparison folder gets a short load test: the Go app, k6 and each database on one GitHub runner, first with the base branch's code, then with the PR's. The results come back as a table in a PR comment, so you can see whether your change moved the numbers. Each folder sets up its run in `ci/bench.conf` and `ci/compose.yml`; database settings you want tested go in `ci/compose.yml`, because `setup/` is only used on the real machines.
 
 The numbers are for comparing base with PR. They come from one busy runner, and the results in each folder's README come from dedicated machines.

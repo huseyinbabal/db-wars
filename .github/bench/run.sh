@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # One comparison on one runner: each database with the base branch's code, then with the PR's, so the numbers can be set side by side.
 #   run.sh <folder> <pr number> <head sha> <results json>
-# ci/bench.env in the folder says what to run, ci/compose.yml starts the databases.
+# ci/bench.conf in the folder says what to run, ci/compose.yml starts the databases.
 set -uo pipefail
 FOLDER=$1; PR=$2; HEAD_SHA=$3; OUT=$(realpath -m "$4"); LOGS=${OUT%.json}.log
 mkdir -p "$(dirname "$OUT")"; : > "$LOGS"
@@ -15,7 +15,7 @@ one() {  # <database> <base|pr> <folder of that version>
   local db=$1 version=$2 dir=$3 summary="$WORK/$db-$version/summary.json" status=0 pid
   mkdir -p "$(dirname "$summary")"; chmod 777 "$(dirname "$summary")"
   (
-    source "$dir/ci/bench.env"
+    source "$dir/ci/bench.conf"
     dsn_var="DSN_$db"; export DB_KIND=$db DB_DSN=${!dsn_var} ADDR=127.0.0.1:8000
     docker compose -f "$dir/ci/compose.yml" up -d --wait "$db" || exit 10
     (cd "$dir/app" && go build -o "$WORK/app-$version") || exit 11
@@ -33,9 +33,9 @@ one() {  # <database> <base|pr> <folder of that version>
   row "$db" "$version" "$summary" "$status"
 }
 
-source "$FOLDER/ci/bench.env"
+source "$FOLDER/ci/bench.conf"
 for db in $DBS; do
-  [ -f "$WORK/base/$FOLDER/ci/bench.env" ] && one "$db" base "$WORK/base/$FOLDER"
+  [ -f "$WORK/base/$FOLDER/ci/bench.conf" ] && one "$db" base "$WORK/base/$FOLDER"
   one "$db" pr "$ROOT/$FOLDER"
 done
 
