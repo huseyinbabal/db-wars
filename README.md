@@ -18,4 +18,4 @@ Two things get a PR no numbers, only a note saying why:
 - changing the test: `.github/`, `k6/`, `ci/bench.conf` or `results/`
 - durability settings in `ci/compose.yml` that let a write return before it reaches the disk, such as `fsync=off`, or data in memory (`tmpfs`)
 
-The numbers are for comparing base with PR. They come from one busy runner, and the results in each folder's README come from dedicated machines.
+The arrows compare base with PR on the same runner: 🟢 is better, 🔴 is worse, ⚪ is a change the runner alone can cause (under 5% for req/s, 25% for p95). The numbers are for that comparison only. They come from one busy runner, and the results in each folder's README and `results/published.json` come from dedicated machines.

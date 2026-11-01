@@ -1,0 +1,15 @@
+{
+  "machines": "2 dedicated vCPUs and 4 GB per database, one million orders",
+  "metric": "highest req/s held with p95 under 50 ms",
+  "rounds": [
+    {"round": "Reads", "runs": 3, "values": {"postgres": "4,977", "mongo": "8,953"}},
+    {"round": "New orders", "runs": 3, "values": {"postgres": "5,964", "mongo": "3,955"}},
+    {"round": "Status updates", "runs": 3, "values": {"postgres": "4,962", "mongo": "3,967"}},
+    {"round": "Shop mix, defaults", "runs": 3, "values": {"postgres": "fails at 400", "mongo": "4,980+"}},
+    {"round": "Shop mix, fastupdate = off", "runs": 3, "values": {"postgres": "5,474", "mongo": "4,982"}},
+    {"round": "Shop mix, fastupdate = off, hosts swapped", "runs": 1, "values": {"postgres": "6,477", "mongo": "4,487"}},
+    {"round": "New orders, fastupdate = off", "runs": 1, "values": {"postgres": "2,970", "mongo": "3,966"}},
+    {"round": "Big orders (40 items): status updates", "runs": 1, "values": {"postgres": "1,492", "mongo": "4,479"}},
+    {"round": "Big orders (40 items): reads", "runs": 1, "values": {"postgres": "4,988", "mongo": "5,980+"}}
+  ]
+}
