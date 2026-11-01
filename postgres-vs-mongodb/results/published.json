@@ -1,4 +1,6 @@
 {
+  "title": "Postgres JSONB vs MongoDB",
+  "video": "https://youtu.be/GXnqsmes-Gw",
   "machines": "2 dedicated vCPUs and 4 GB per database, one million orders",
   "metric": "highest req/s held with p95 under 50 ms",
   "rounds": [

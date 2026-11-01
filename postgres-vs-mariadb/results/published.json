@@ -1,4 +1,6 @@
 {
+  "title": "Postgres vs MariaDB",
+  "video": "https://youtu.be/Iuz42_o4aMQ",
   "machines": "2 dedicated vCPUs and 4 GB per database, 5 million orders unless noted",
   "metric": "req/s, middle run",
   "rounds": [

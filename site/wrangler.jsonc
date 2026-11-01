@@ -1,0 +1,6 @@
+{
+  "name": "db-wars",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./dist" },
+  "routes": [{ "pattern": "db-wars.huseyinbabal.dev", "custom_domain": true }]
+}
