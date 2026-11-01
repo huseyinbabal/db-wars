@@ -1,0 +1,16 @@
+# Same settings as setup/db.sh, without the login setup: tune here to see the effect in a pull request.
+services:
+  postgres:
+    image: postgres:18
+    environment: { POSTGRES_USER: shop, POSTGRES_PASSWORD: bench, POSTGRES_DB: shop }
+    ports: ["127.0.0.1:5432:5432"]
+    shm_size: 1g
+    command: >-
+      -c max_connections=200 -c shared_buffers=1GB -c effective_cache_size=3GB -c max_wal_size=2GB
+      -c wal_level=minimal -c max_wal_senders=0 -c fsync=on -c synchronous_commit=on
+    healthcheck: { test: [CMD, pg_isready, -U, shop, -d, shop], interval: 1s, retries: 60 }
+  mongo:
+    image: mongo:8.2.12
+    ports: ["127.0.0.1:27017:27017"]
+    command: [--wiredTigerCacheSizeGB, "1"]
+    healthcheck: { test: [CMD, mongosh, --quiet, --eval, "db.runCommand({ping:1}).ok"], interval: 1s, retries: 60 }
