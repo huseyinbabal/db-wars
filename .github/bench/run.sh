@@ -12,7 +12,8 @@ ROWS="$WORK/rows.jsonl"; : > "$ROWS"
 row() { python3 .github/bench/row.py "$@" >> "$ROWS"; }
 
 one() {  # <database> <base|pr> <folder of that version>
-  local db=$1 version=$2 dir=$3 summary="$WORK/$db-$version/summary.json" status=0 pid
+  local db=$1 version=$2 dir=$3 status=0
+  local summary="$WORK/$db-$version/summary.json"
   mkdir -p "$(dirname "$summary")"; chmod 777 "$(dirname "$summary")"
   (
     source "$dir/ci/bench.conf"
@@ -20,12 +21,12 @@ one() {  # <database> <base|pr> <folder of that version>
     docker compose -f "$dir/ci/compose.yml" up -d --wait "$db" || exit 10
     (cd "$dir/app" && go build -o "$WORK/app-$version") || exit 11
     "$WORK/app-$version" seed $SEED || exit 12
-    "$WORK/app-$version" & pid=$!
+    "$WORK/app-$version" & app=$!
     for _ in $(seq 30); do curl -fs http://127.0.0.1:8000/healthz >/dev/null && break; sleep 1; done
     docker run --rm --network host -v "$dir:/src:ro" -v "$(dirname "$summary"):/out" "$K6_IMAGE" run --quiet --no-usage-report \
       --summary-export /out/summary.json -e BASE_URL=http://127.0.0.1:8000 $K6_ENV "/src/$K6_SCRIPT"
     k6=$?
-    kill "$pid" 2>/dev/null; wait "$pid" 2>/dev/null
+    kill "$app" 2>/dev/null; wait "$app" 2>/dev/null
     exit $k6
   ) >> "$LOGS" 2>&1
   status=$?
