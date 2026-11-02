@@ -1,0 +1,80 @@
+{
+ "title": "Postgres vs SQLite",
+ "video": "https://youtu.be/ulycfdlJaNk",
+ "machines": "2 dedicated vCPUs and 4 GB per database, app on the same machine, one million orders",
+ "metric": "highest req/s held with p95 under 50 ms",
+ "rounds": [
+  {
+   "round": "Reads",
+   "runs": 3,
+   "values": {
+    "postgres": "5,963",
+    "sqlite": "11,934"
+   }
+  },
+  {
+   "round": "New orders",
+   "runs": 3,
+   "values": {
+    "postgres": "998",
+    "sqlite": "398"
+   }
+  },
+  {
+   "round": "Shop, 1 write in 20",
+   "runs": 3,
+   "values": {
+    "postgres": "4,481",
+    "sqlite": "5,987"
+   }
+  },
+  {
+   "round": "Shop, 1 write in 5",
+   "runs": 3,
+   "values": {
+    "postgres": "2,993",
+    "sqlite": "1,748"
+   }
+  },
+  {
+   "round": "New orders, SQLite single writer connection",
+   "runs": 3,
+   "values": {
+    "postgres": "799",
+    "sqlite": "499"
+   }
+  },
+  {
+   "round": "Shop, 1 write in 5, SQLite single writer connection",
+   "runs": 3,
+   "values": {
+    "postgres": "2,741",
+    "sqlite": "2,496"
+   }
+  },
+  {
+   "round": "Reads, hosts swapped",
+   "runs": 1,
+   "values": {
+    "postgres": "4,959",
+    "sqlite": "10,963"
+   }
+  },
+  {
+   "round": "Shop, 1 write in 5, single writer, hosts swapped",
+   "runs": 1,
+   "values": {
+    "postgres": "2,994",
+    "sqlite": "1,999"
+   }
+  },
+  {
+   "round": "New orders, Postgres pool of 10",
+   "runs": 1,
+   "values": {
+    "postgres": "696",
+    "sqlite": "299"
+   }
+  }
+ ]
+}

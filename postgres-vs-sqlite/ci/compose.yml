@@ -1,0 +1,14 @@
+# Same settings as setup/srv.sh. SQLite has no server, so its service only keeps the run script's "up" step uniform.
+services:
+  postgres:
+    image: postgres:18
+    environment: { POSTGRES_USER: shop, POSTGRES_PASSWORD: bench, POSTGRES_DB: shop }
+    ports: ["127.0.0.1:5432:5432"]
+    shm_size: 1g
+    command: >-
+      -c max_connections=200 -c shared_buffers=1GB -c effective_cache_size=3GB -c max_wal_size=2GB
+      -c wal_level=minimal -c max_wal_senders=0 -c fsync=on -c synchronous_commit=on
+    healthcheck: { test: [CMD, pg_isready, -U, shop, -d, shop], interval: 1s, retries: 60 }
+  sqlite:
+    image: busybox:1.37
+    command: [sleep, infinity]
