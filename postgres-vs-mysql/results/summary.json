@@ -1,0 +1,222 @@
+{
+ "reads": {
+  "runs": [
+   "read-1",
+   "read-2",
+   "read-3"
+  ],
+  "postgres": {
+   "sustained": 13947,
+   "each": [
+    13947,
+    12984,
+    14890
+   ],
+   "p95": 47.0,
+   "above_range": true,
+   "top": 15000
+  },
+  "mysql": {
+   "sustained": 6966,
+   "each": [
+    6957,
+    6971,
+    6966
+   ],
+   "p95": 35.8,
+   "above_range": false,
+   "top": 15000
+  }
+ },
+ "new orders": {
+  "runs": [
+   "insert-1",
+   "insert-2",
+   "insert-3"
+  ],
+  "postgres": {
+   "sustained": 1397,
+   "each": [
+    500,
+    1397,
+    1397
+   ],
+   "p95": 26.2,
+   "above_range": false,
+   "top": 2800
+  },
+  "mysql": {
+   "sustained": 997,
+   "each": [
+    992,
+    1197,
+    997
+   ],
+   "p95": 45.2,
+   "above_range": false,
+   "top": 2200
+  }
+ },
+ "shop 5% writes": {
+  "runs": [
+   "shop5-1",
+   "shop5-2",
+   "shop5-3"
+  ],
+  "postgres": {
+   "sustained": 8985,
+   "each": [
+    7960,
+    9924,
+    8985
+   ],
+   "p95": 28.5,
+   "above_range": false,
+   "top": 14000
+  },
+  "mysql": {
+   "sustained": 4969,
+   "each": [
+    4974,
+    4956,
+    4969
+   ],
+   "p95": 19.9,
+   "above_range": false,
+   "top": 14000
+  }
+ },
+ "shop 20% writes": {
+  "runs": [
+   "shop20-1",
+   "shop20-2",
+   "shop20-3"
+  ],
+  "postgres": {
+   "sustained": 6974,
+   "each": [
+    6961,
+    7728,
+    6974
+   ],
+   "p95": 34.3,
+   "above_range": true,
+   "top": 10750
+  },
+  "mysql": {
+   "sustained": 3981,
+   "each": [
+    4470,
+    3237,
+    3981
+   ],
+   "p95": 22.2,
+   "above_range": false,
+   "top": 10750
+  }
+ },
+ "updates, no index": {
+  "runs": [
+   "views-1",
+   "views-2",
+   "views-3"
+  ],
+  "postgres": {
+   "sustained": 7948,
+   "each": [
+    7988,
+    7948,
+    6985
+   ],
+   "p95": 31.1,
+   "above_range": false,
+   "top": 14000
+  },
+  "mysql": {
+   "sustained": 3975,
+   "each": [
+    2972,
+    3978,
+    3975
+   ],
+   "p95": 39.8,
+   "above_range": false,
+   "top": 14000
+  }
+ },
+ "updates, indexed column": {
+  "runs": [
+   "status-1",
+   "status-2",
+   "status-3"
+  ],
+  "postgres": {
+   "sustained": 5486,
+   "each": [
+    5486,
+    5484,
+    5486
+   ],
+   "p95": 43.5,
+   "above_range": false,
+   "top": 7000
+  },
+  "mysql": {
+   "sustained": 3983,
+   "each": [
+    3983,
+    3478,
+    4484
+   ],
+   "p95": 36.5,
+   "above_range": false,
+   "top": 7000
+  }
+ },
+ "reads, hosts swapped": {
+  "runs": [
+   "read-swap"
+  ],
+  "postgres": {
+   "sustained": 14868,
+   "each": [
+    14868
+   ],
+   "p95": 41.5,
+   "above_range": true,
+   "top": 15000
+  },
+  "mysql": {
+   "sustained": 6969,
+   "each": [
+    6969
+   ],
+   "p95": 48.5,
+   "above_range": false,
+   "top": 15000
+  }
+ },
+ "reads, 20M orders": {
+  "runs": [
+   "read-20m"
+  ],
+  "postgres": {
+   "sustained": 9968,
+   "each": [
+    9968
+   ],
+   "p95": 44.5,
+   "above_range": false,
+   "top": 14000
+  },
+  "mysql": {
+   "sustained": 3978,
+   "each": [
+    3978
+   ],
+   "p95": 16.9,
+   "above_range": false,
+   "top": 14000
+  }
+ }
+}

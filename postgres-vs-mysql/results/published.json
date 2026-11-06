@@ -1,0 +1,72 @@
+{
+ "title": "Postgres vs MySQL",
+ "video": "https://youtu.be/-_5gK8TbLGw",
+ "machines": "2 dedicated vCPUs and 4 GB per database, 5 million orders unless noted",
+ "metric": "highest req/s held with p95 under 50 ms, median of runs",
+ "rounds": [
+  {
+   "round": "Reads",
+   "runs": 3,
+   "values": {
+    "postgres": "13,947+",
+    "mysql": "6,966"
+   }
+  },
+  {
+   "round": "New orders",
+   "runs": 3,
+   "values": {
+    "postgres": "1,397",
+    "mysql": "997"
+   }
+  },
+  {
+   "round": "Shop, 1 write in 20",
+   "runs": 3,
+   "values": {
+    "postgres": "8,985",
+    "mysql": "4,969"
+   }
+  },
+  {
+   "round": "Shop, 1 write in 5",
+   "runs": 3,
+   "values": {
+    "postgres": "6,974+",
+    "mysql": "3,981"
+   }
+  },
+  {
+   "round": "Updates, column without index",
+   "runs": 3,
+   "values": {
+    "postgres": "7,948",
+    "mysql": "3,975"
+   }
+  },
+  {
+   "round": "Updates, indexed column",
+   "runs": 3,
+   "values": {
+    "postgres": "5,486",
+    "mysql": "3,983"
+   }
+  },
+  {
+   "round": "Reads, hosts swapped",
+   "runs": 1,
+   "values": {
+    "postgres": "14,868+",
+    "mysql": "6,969"
+   }
+  },
+  {
+   "round": "Reads, 20 million orders",
+   "runs": 1,
+   "values": {
+    "postgres": "9,968",
+    "mysql": "3,978"
+   }
+  }
+ ]
+}
