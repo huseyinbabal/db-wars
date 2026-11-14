@@ -1,0 +1,24 @@
+{
+ "title": "Redis vs Valkey",
+ "video": "https://youtu.be/ObAdcaDRGGs",
+ "machines": "4 dedicated vCPUs and 8 GB for the server, 1 million products, default settings",
+ "metric": "highest req/s reached while k6 raised the rate to 45,000, median of 3 runs",
+ "rounds": [
+  {
+   "round": "Default settings (io-threads 1)",
+   "runs": 3,
+   "values": {
+    "redis": "34,863",
+    "valkey": "32,227"
+   }
+  },
+  {
+   "round": "io-threads 3",
+   "runs": 3,
+   "values": {
+    "redis": "39,306",
+    "valkey": "36,079"
+   }
+  }
+ ]
+}

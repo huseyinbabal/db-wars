@@ -1,0 +1,830 @@
+{
+ "io1-r1": {
+  "redis": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.8,
+     "ops": 44104
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.8,
+     "ops": 65959
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 1.6,
+     "ops": 88034
+    },
+    {
+     "target": 25000,
+     "rps": 24993,
+     "p95_ms": 10.6,
+     "ops": 109994
+    },
+    {
+     "target": 30000,
+     "rps": 28554,
+     "p95_ms": 231.4,
+     "ops": 125388
+    },
+    {
+     "target": 35000,
+     "rps": 27471,
+     "p95_ms": 294.4,
+     "ops": 122041
+    },
+    {
+     "target": 40000,
+     "rps": 28391,
+     "p95_ms": 287.5,
+     "ops": 126582
+    },
+    {
+     "target": 45000,
+     "rps": 31916,
+     "p95_ms": 264.0,
+     "ops": 141681
+    }
+   ],
+   "peak_rps": 31916,
+   "peak_target": 45000,
+   "peak_p95_ms": 264.0,
+   "peak_ops": 141681,
+   "requests": 6509737,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "redis-server": 96.0
+   },
+   "memory_seeded": {
+    "used_memory": 247511648,
+    "dataset": 205173192,
+    "overhead": 42338456
+   },
+   "server": "redis_version:8.10.3"
+  },
+  "valkey": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.7,
+     "ops": 43966
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.8,
+     "ops": 66039
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 1.2,
+     "ops": 87918
+    },
+    {
+     "target": 25000,
+     "rps": 24919,
+     "p95_ms": 84.5,
+     "ops": 109623
+    },
+    {
+     "target": 30000,
+     "rps": 28549,
+     "p95_ms": 255.4,
+     "ops": 126029
+    },
+    {
+     "target": 35000,
+     "rps": 32514,
+     "p95_ms": 248.7,
+     "ops": 141353
+    },
+    {
+     "target": 40000,
+     "rps": 29471,
+     "p95_ms": 283.4,
+     "ops": 129891
+    },
+    {
+     "target": 45000,
+     "rps": 33186,
+     "p95_ms": 244.8,
+     "ops": 145987
+    }
+   ],
+   "peak_rps": 33186,
+   "peak_target": 45000,
+   "peak_p95_ms": 244.8,
+   "peak_ops": 145987,
+   "requests": 6767156,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "valkey-server": 96.8
+   },
+   "memory_seeded": {
+    "used_memory": 250431568,
+    "dataset": 215566480,
+    "overhead": 34865088
+   },
+   "server": "redis_version:7.2.4"
+  }
+ },
+ "io1-r2": {
+  "redis": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.8,
+     "ops": 44073
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.8,
+     "ops": 65943
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 1.5,
+     "ops": 88070
+    },
+    {
+     "target": 25000,
+     "rps": 25010,
+     "p95_ms": 25.8,
+     "ops": 109960
+    },
+    {
+     "target": 30000,
+     "rps": 29150,
+     "p95_ms": 161.2,
+     "ops": 128443
+    },
+    {
+     "target": 35000,
+     "rps": 32192,
+     "p95_ms": 248.5,
+     "ops": 140358
+    },
+    {
+     "target": 40000,
+     "rps": 36399,
+     "p95_ms": 209.0,
+     "ops": 159705
+    },
+    {
+     "target": 45000,
+     "rps": 35099,
+     "p95_ms": 224.7,
+     "ops": 154332
+    }
+   ],
+   "peak_rps": 36399,
+   "peak_target": 40000,
+   "peak_p95_ms": 209.0,
+   "peak_ops": 159705,
+   "requests": 7064684,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "redis-server": 92.7
+   },
+   "memory_seeded": {
+    "used_memory": 247595600,
+    "dataset": 205180344,
+    "overhead": 42415256
+   },
+   "server": "redis_version:8.10.3"
+  },
+  "valkey": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.7,
+     "ops": 44093
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.8,
+     "ops": 66144
+    },
+    {
+     "target": 20000,
+     "rps": 19736,
+     "p95_ms": 117.2,
+     "ops": 86556
+    },
+    {
+     "target": 25000,
+     "rps": 24945,
+     "p95_ms": 67.1,
+     "ops": 109927
+    },
+    {
+     "target": 30000,
+     "rps": 26275,
+     "p95_ms": 304.6,
+     "ops": 116216
+    },
+    {
+     "target": 35000,
+     "rps": 28788,
+     "p95_ms": 283.1,
+     "ops": 125342
+    },
+    {
+     "target": 40000,
+     "rps": 26970,
+     "p95_ms": 296.7,
+     "ops": 120507
+    },
+    {
+     "target": 45000,
+     "rps": 32227,
+     "p95_ms": 267.0,
+     "ops": 145694
+    }
+   ],
+   "peak_rps": 32227,
+   "peak_target": 45000,
+   "peak_p95_ms": 267.0,
+   "peak_ops": 145694,
+   "requests": 6356498,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "valkey-server": 96.7
+   },
+   "memory_seeded": {
+    "used_memory": 250350096,
+    "dataset": 215566480,
+    "overhead": 34783616
+   },
+   "server": "redis_version:7.2.4"
+  }
+ },
+ "io1-r3": {
+  "redis": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.7,
+     "ops": 43851
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.8,
+     "ops": 65915
+    },
+    {
+     "target": 20000,
+     "rps": 19999,
+     "p95_ms": 1.7,
+     "ops": 87997
+    },
+    {
+     "target": 25000,
+     "rps": 25014,
+     "p95_ms": 14.1,
+     "ops": 110125
+    },
+    {
+     "target": 30000,
+     "rps": 29766,
+     "p95_ms": 119.4,
+     "ops": 130641
+    },
+    {
+     "target": 35000,
+     "rps": 29916,
+     "p95_ms": 274.0,
+     "ops": 128852
+    },
+    {
+     "target": 40000,
+     "rps": 34863,
+     "p95_ms": 231.1,
+     "ops": 154186
+    },
+    {
+     "target": 45000,
+     "rps": 28749,
+     "p95_ms": 311.5,
+     "ops": 125927
+    }
+   ],
+   "peak_rps": 34863,
+   "peak_target": 40000,
+   "peak_p95_ms": 231.1,
+   "peak_ops": 154186,
+   "requests": 6732761,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "redis-server": 94.7
+   },
+   "memory_seeded": {
+    "used_memory": 247512064,
+    "dataset": 205173608,
+    "overhead": 42338456
+   },
+   "server": "redis_version:8.10.3"
+  },
+  "valkey": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.7,
+     "ops": 43895
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.8,
+     "ops": 66036
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 18.9,
+     "ops": 87947
+    },
+    {
+     "target": 25000,
+     "rps": 24907,
+     "p95_ms": 73.8,
+     "ops": 109478
+    },
+    {
+     "target": 30000,
+     "rps": 27329,
+     "p95_ms": 283.1,
+     "ops": 118735
+    },
+    {
+     "target": 35000,
+     "rps": 30170,
+     "p95_ms": 268.8,
+     "ops": 136048
+    },
+    {
+     "target": 40000,
+     "rps": 26005,
+     "p95_ms": 323.3,
+     "ops": 112862
+    },
+    {
+     "target": 45000,
+     "rps": 30333,
+     "p95_ms": 285.9,
+     "ops": 130765
+    }
+   ],
+   "peak_rps": 30333,
+   "peak_target": 45000,
+   "peak_p95_ms": 285.9,
+   "peak_ops": 130765,
+   "requests": 6341332,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "valkey-server": 97.5
+   },
+   "memory_seeded": {
+    "used_memory": 250341968,
+    "dataset": 215566480,
+    "overhead": 34775488
+   },
+   "server": "redis_version:7.2.4"
+  }
+ },
+ "io3-r1": {
+  "redis": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.8,
+     "ops": 43913
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.9,
+     "ops": 65977
+    },
+    {
+     "target": 20000,
+     "rps": 19999,
+     "p95_ms": 1.3,
+     "ops": 87878
+    },
+    {
+     "target": 25000,
+     "rps": 24999,
+     "p95_ms": 1.9,
+     "ops": 109711
+    },
+    {
+     "target": 30000,
+     "rps": 29998,
+     "p95_ms": 7.4,
+     "ops": 131729
+    },
+    {
+     "target": 35000,
+     "rps": 34939,
+     "p95_ms": 32.4,
+     "ops": 153493
+    },
+    {
+     "target": 40000,
+     "rps": 36656,
+     "p95_ms": 206.3,
+     "ops": 161197
+    },
+    {
+     "target": 45000,
+     "rps": 39713,
+     "p95_ms": 197.8,
+     "ops": 174407
+    }
+   ],
+   "peak_rps": 39713,
+   "peak_target": 45000,
+   "peak_p95_ms": 197.8,
+   "peak_ops": 174407,
+   "requests": 7340077,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "redis-server": 72.6,
+    "io_thd_1": 69.7,
+    "io_thd_2": 74.5
+   },
+   "memory_seeded": {
+    "used_memory": 247517464,
+    "dataset": 205182406,
+    "overhead": 42335058
+   },
+   "server": "redis_version:8.10.3"
+  },
+  "valkey": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.7,
+     "ops": 44021
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.7,
+     "ops": 65841
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 0.9,
+     "ops": 87955
+    },
+    {
+     "target": 25000,
+     "rps": 25000,
+     "p95_ms": 4.9,
+     "ops": 110105
+    },
+    {
+     "target": 30000,
+     "rps": 29965,
+     "p95_ms": 15.1,
+     "ops": 131872
+    },
+    {
+     "target": 35000,
+     "rps": 32974,
+     "p95_ms": 221.7,
+     "ops": 144861
+    },
+    {
+     "target": 40000,
+     "rps": 32730,
+     "p95_ms": 228.5,
+     "ops": 143014
+    },
+    {
+     "target": 45000,
+     "rps": 36614,
+     "p95_ms": 221.3,
+     "ops": 163174
+    }
+   ],
+   "peak_rps": 36614,
+   "peak_target": 45000,
+   "peak_p95_ms": 221.3,
+   "peak_ops": 163174,
+   "requests": 7048847,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "valkey-server": 92.6,
+    "io_thd_1": 99.9,
+    "io_thd_2": 94.4
+   },
+   "memory_seeded": {
+    "used_memory": 250922096,
+    "dataset": 215607440,
+    "overhead": 35314656
+   },
+   "server": "redis_version:7.2.4"
+  }
+ },
+ "io3-r2": {
+  "redis": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.9,
+     "ops": 43979
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.9,
+     "ops": 65948
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 1.2,
+     "ops": 87990
+    },
+    {
+     "target": 25000,
+     "rps": 25000,
+     "p95_ms": 2.1,
+     "ops": 109727
+    },
+    {
+     "target": 30000,
+     "rps": 29956,
+     "p95_ms": 7.6,
+     "ops": 131673
+    },
+    {
+     "target": 35000,
+     "rps": 34982,
+     "p95_ms": 27.2,
+     "ops": 153996
+    },
+    {
+     "target": 40000,
+     "rps": 37939,
+     "p95_ms": 171.2,
+     "ops": 167898
+    },
+    {
+     "target": 45000,
+     "rps": 38988,
+     "p95_ms": 201.0,
+     "ops": 172120
+    }
+   ],
+   "peak_rps": 38988,
+   "peak_target": 45000,
+   "peak_p95_ms": 201.0,
+   "peak_ops": 172120,
+   "requests": 7334453,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "redis-server": 77.0,
+    "io_thd_1": 68.7,
+    "io_thd_2": 69.1
+   },
+   "memory_seeded": {
+    "used_memory": 247526320,
+    "dataset": 205208926,
+    "overhead": 42317394
+   },
+   "server": "redis_version:8.10.3"
+  },
+  "valkey": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.7,
+     "ops": 43949
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.8,
+     "ops": 66148
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 1.1,
+     "ops": 88024
+    },
+    {
+     "target": 25000,
+     "rps": 25000,
+     "p95_ms": 17.9,
+     "ops": 110003
+    },
+    {
+     "target": 30000,
+     "rps": 29748,
+     "p95_ms": 104.4,
+     "ops": 130640
+    },
+    {
+     "target": 35000,
+     "rps": 32692,
+     "p95_ms": 229.0,
+     "ops": 143837
+    },
+    {
+     "target": 40000,
+     "rps": 31936,
+     "p95_ms": 248.6,
+     "ops": 141796
+    },
+    {
+     "target": 45000,
+     "rps": 31730,
+     "p95_ms": 244.1,
+     "ops": 139428
+    }
+   ],
+   "peak_rps": 32692,
+   "peak_target": 35000,
+   "peak_p95_ms": 229.0,
+   "peak_ops": 143837,
+   "requests": 6825080,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "valkey-server": 96.3,
+    "io_thd_1": 99.8,
+    "io_thd_2": 93.7
+   },
+   "memory_seeded": {
+    "used_memory": 250916528,
+    "dataset": 215607440,
+    "overhead": 35309088
+   },
+   "server": "redis_version:7.2.4"
+  }
+ },
+ "io3-r3": {
+  "redis": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.8,
+     "ops": 43931
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.9,
+     "ops": 66054
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 1.3,
+     "ops": 88265
+    },
+    {
+     "target": 25000,
+     "rps": 25001,
+     "p95_ms": 2.2,
+     "ops": 110098
+    },
+    {
+     "target": 30000,
+     "rps": 30000,
+     "p95_ms": 8.1,
+     "ops": 132082
+    },
+    {
+     "target": 35000,
+     "rps": 34009,
+     "p95_ms": 152.2,
+     "ops": 149073
+    },
+    {
+     "target": 40000,
+     "rps": 38018,
+     "p95_ms": 189.2,
+     "ops": 166283
+    },
+    {
+     "target": 45000,
+     "rps": 39306,
+     "p95_ms": 198.7,
+     "ops": 174119
+    }
+   ],
+   "peak_rps": 39306,
+   "peak_target": 45000,
+   "peak_p95_ms": 198.7,
+   "peak_ops": 174119,
+   "requests": 7335064,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "redis-server": 67.2,
+    "io_thd_1": 80.0,
+    "io_thd_2": 73.5
+   },
+   "memory_seeded": {
+    "used_memory": 247525480,
+    "dataset": 205190422,
+    "overhead": 42335058
+   },
+   "server": "redis_version:8.10.3"
+  },
+  "valkey": {
+   "steps": [
+    {
+     "target": 10000,
+     "rps": 10000,
+     "p95_ms": 0.7,
+     "ops": 44104
+    },
+    {
+     "target": 15000,
+     "rps": 15000,
+     "p95_ms": 0.7,
+     "ops": 66103
+    },
+    {
+     "target": 20000,
+     "rps": 20000,
+     "p95_ms": 1.0,
+     "ops": 87986
+    },
+    {
+     "target": 25000,
+     "rps": 25000,
+     "p95_ms": 1.3,
+     "ops": 109925
+    },
+    {
+     "target": 30000,
+     "rps": 29561,
+     "p95_ms": 137.9,
+     "ops": 129455
+    },
+    {
+     "target": 35000,
+     "rps": 33068,
+     "p95_ms": 239.6,
+     "ops": 144171
+    },
+    {
+     "target": 40000,
+     "rps": 36079,
+     "p95_ms": 229.7,
+     "ops": 159553
+    },
+    {
+     "target": 45000,
+     "rps": 33164,
+     "p95_ms": 243.5,
+     "ops": 145672
+    }
+   ],
+   "peak_rps": 36079,
+   "peak_target": 40000,
+   "peak_p95_ms": 229.7,
+   "peak_ops": 159553,
+   "requests": 7079401,
+   "failed_rate": 0,
+   "threads_at_peak": {
+    "valkey-server": 90.6,
+    "io_thd_1": 99.6,
+    "io_thd_2": 91.3
+   },
+   "memory_seeded": {
+    "used_memory": 250923952,
+    "dataset": 215607440,
+    "overhead": 35316512
+   },
+   "server": "redis_version:7.2.4"
+  }
+ }
+}

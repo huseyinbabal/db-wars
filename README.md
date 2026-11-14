@@ -8,6 +8,7 @@ The same application, a different database, measured with k6. Each folder is one
 | [`postgres-vs-mysql/`](postgres-vs-mysql/) | PostgreSQL 18 vs MySQL 9.7 LTS: the same shop on identical 2 vCPU machines, reads, writes, updates and one open transaction |
 | [`postgres-vs-mongodb/`](postgres-vs-mongodb/) | PostgreSQL 18 JSONB vs MongoDB 8.2: the same order documents, two identical stacks side by side |
 | [`postgres-vs-sqlite/`](postgres-vs-sqlite/) | PostgreSQL 18 vs SQLite: the same shop on one machine, reads and writes pushed past their limits |
+| [`redis-vs-valkey/`](redis-vs-valkey/) | Redis 8.10 vs Valkey 9.1: the same shop cache on a 4 vCPU machine, default settings and io-threads 3 |
 
 ## Pull requests
 
