@@ -1,0 +1,9 @@
+Finalize Aggregate  (cost=104062.38..104062.39 rows=1 width=8)
+  ->  Gather  (cost=104062.16..104062.37 rows=2 width=8)
+        Workers Planned: 2
+        ->  Partial Aggregate  (cost=103062.16..103062.17 rows=1 width=8)
+              ->  Parallel Hash Anti Join  (cost=15428.00..98895.50 rows=1666667 width=0)
+                    Hash Cond: (a.x = b.y)
+                    ->  Parallel Seq Scan on a  (cost=0.00..42957.33 rows=2083333 width=4)
+                    ->  Parallel Hash  (cost=8591.67..8591.67 rows=416667 width=4)
+                          ->  Parallel Seq Scan on b  (cost=0.00..8591.67 rows=416667 width=4)

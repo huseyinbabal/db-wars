@@ -1,0 +1,28 @@
+application_name|psql
+autovacuum|off
+autovacuum_worker_slots|16
+checkpoint_timeout|1800
+config_file|/var/lib/postgresql/18/docker/postgresql.conf
+data_directory|/var/lib/postgresql/18/docker
+DateStyle|ISO, MDY
+default_text_search_config|pg_catalog.english
+dynamic_shared_memory_type|posix
+hba_file|/var/lib/postgresql/18/docker/pg_hba.conf
+ident_file|/var/lib/postgresql/18/docker/pg_ident.conf
+jit|off
+lc_messages|en_US.utf8
+lc_monetary|en_US.utf8
+lc_numeric|en_US.utf8
+lc_time|en_US.utf8
+listen_addresses|*
+log_autovacuum_min_duration|0
+log_timezone|Etc/UTC
+maintenance_work_mem|1048576
+max_connections|100
+max_wal_size|16384
+min_wal_size|80
+shared_buffers|262144
+TimeZone|Etc/UTC
+transaction_deferrable|off
+transaction_isolation|read committed
+transaction_read_only|off

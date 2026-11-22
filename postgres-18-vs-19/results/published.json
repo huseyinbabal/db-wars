@@ -1,0 +1,56 @@
+{
+ "title": "PostgreSQL 18 vs 19",
+ "video": "https://youtu.be/d_f1mobf988",
+ "machines": "One server with 8 dedicated vCPUs and 16 GB, postgres:18.7 vs postgres:19.0, same settings, JIT off on both",
+ "metric": "median of 5 runs (3 for autovacuum and table rewrites); for ms rounds lower is better, for tps rounds higher is better",
+ "rounds": [
+  {
+   "round": "COPY 5M rows into a table with a foreign key (ms)",
+   "runs": 5,
+   "values": {
+    "postgres-18": "31,453 ms",
+    "postgres-19": "15,192 ms"
+   }
+  },
+  {
+   "round": "INSERT … SELECT 5M rows with a foreign key (ms)",
+   "runs": 5,
+   "values": {
+    "postgres-18": "37,623 ms",
+    "postgres-19": "21,454 ms"
+   }
+  },
+  {
+   "round": "Single-row inserts with a foreign key, 16 clients (tps)",
+   "runs": 5,
+   "values": {
+    "postgres-18": "30,375",
+    "postgres-19": "32,940"
+   }
+  },
+  {
+   "round": "NOT IN with 1M rows in the subquery (ms, 18 hit the 120 s timeout)",
+   "runs": 5,
+   "values": {
+    "postgres-18": "120,000+ ms",
+    "postgres-19": "542 ms"
+   }
+  },
+  {
+   "round": "Lowest tps while removing bloat: VACUUM FULL on 18, REPACK (CONCURRENTLY) on 19",
+   "runs": 3,
+   "values": {
+    "postgres-18": "0",
+    "postgres-19": "12,533"
+   }
+  },
+  {
+   "round": "Autovacuum on a table with 8 indexes (ms, 19 with 4 parallel workers)",
+   "runs": 3,
+   "values": {
+    "postgres-18": "36,290 ms",
+    "postgres-19": "33,900 ms"
+   }
+  }
+ ]
+}
