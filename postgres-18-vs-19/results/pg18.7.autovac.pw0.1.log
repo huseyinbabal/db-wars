@@ -1,0 +1,21 @@
+2026-11-22 00:45:28.958 UTC [1080] LOG:  automatic vacuum of table "postgres.public.wide": index scans: 1
+	pages: 0 removed, 61729 remain, 61729 scanned (100.00% of total), 0 eagerly scanned
+	tuples: 2500000 removed, 2500000 remain, 0 are dead but not yet removable
+	removable cutoff: 24634655, which was 0 XIDs old when operation ended
+	new relfrozenxid: 24634633, which is 1 XIDs ahead of previous value
+	frozen: 0 pages from table (0.00% of total) had 0 tuples frozen
+	visibility map: 61729 pages set all-visible, 0 pages set all-frozen (0 were all-visible)
+	index scan needed: 61729 pages from table (100.00% of total) had 2500000 dead item identifiers removed
+	index "wide_pkey": pages: 13712 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_a_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_b_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_c_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_d_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_e_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_f_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_g_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_h_idx": pages: 36045 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	avg read rate: 28.279 MB/s, avg write rate: 28.347 MB/s
+	buffer usage: 199106 hits, 132028 reads, 132348 dirtied
+	WAL usage: 330210 records, 406 full page images, 73698151 bytes, 0 buffers full
+	system usage: CPU: user: 2.48 s, system: 0.72 s, elapsed: 36.47 s

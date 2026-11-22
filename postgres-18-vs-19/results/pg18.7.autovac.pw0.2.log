@@ -1,0 +1,31 @@
+2026-11-22 00:47:38.539 UTC [1121] LOG:  automatic vacuum of table "postgres.public.wide": index scans: 1
+	pages: 0 removed, 61729 remain, 61729 scanned (100.00% of total), 0 eagerly scanned
+	tuples: 2500000 removed, 2500000 remain, 0 are dead but not yet removable
+	removable cutoff: 24634669, which was 0 XIDs old when operation ended
+	new relfrozenxid: 24634659, which is 1 XIDs ahead of previous value
+	frozen: 0 pages from table (0.00% of total) had 0 tuples frozen
+	visibility map: 61729 pages set all-visible, 0 pages set all-frozen (0 were all-visible)
+	index scan needed: 61729 pages from table (100.00% of total) had 2500000 dead item identifiers removed
+	index "wide_pkey": pages: 13712 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_a_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_b_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_c_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_d_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_e_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_f_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_g_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_h_idx": pages: 36045 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	avg read rate: 28.562 MB/s, avg write rate: 28.416 MB/s
+	buffer usage: 199124 hits, 132028 reads, 131353 dirtied
+	WAL usage: 330210 records, 4 full page images, 72347833 bytes, 0 buffers full
+	system usage: CPU: user: 2.49 s, system: 0.66 s, elapsed: 36.11 s
+2026-11-22 00:47:39.003 UTC [1121] LOG:  automatic analyze of table "postgres.public.wide"
+	avg read rate: 0.000 MB/s, avg write rate: 0.050 MB/s
+	buffer usage: 30382 hits, 0 reads, 3 dirtied
+	WAL usage: 33 records, 1 full page images, 20253 bytes, 0 buffers full
+	system usage: CPU: user: 0.14 s, system: 0.00 s, elapsed: 0.46 s
+2026-11-22 00:47:39.006 UTC [1121] LOG:  automatic vacuum of table "postgres.pg_catalog.pg_class": index scans: 1
+	pages: 0 removed, 14 remain, 14 scanned (100.00% of total), 0 eagerly scanned
+	tuples: 64 removed, 427 remain, 0 are dead but not yet removable
+	removable cutoff: 24634670, which was 0 XIDs old when operation ended
+	new relfrozenxid: 24634658, which is 24633913 XIDs ahead of previous value

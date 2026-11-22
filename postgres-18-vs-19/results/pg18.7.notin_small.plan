@@ -1,0 +1,8 @@
+Finalize Aggregate  (cost=53463.05..53463.06 rows=1 width=8)
+  ->  Gather  (cost=53462.83..53463.04 rows=2 width=8)
+        Workers Planned: 2
+        ->  Partial Aggregate  (cost=52462.83..52462.84 rows=1 width=8)
+              ->  Parallel Seq Scan on a  (cost=1693.00..49858.67 rows=1041667 width=0)
+                    Filter: (NOT (ANY (x = (hashed SubPlan 1).col1)))
+                    SubPlan 1
+                      ->  Seq Scan on b  (cost=0.00..1443.00 rows=100000 width=4)

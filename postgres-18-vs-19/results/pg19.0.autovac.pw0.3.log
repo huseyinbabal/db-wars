@@ -1,0 +1,31 @@
+2026-11-22 01:28:26.892 UTC [1482] LOG:  automatic vacuum of table "postgres.public.wide": index scans: 1
+	pages: 0 removed, 61729 remain, 61729 scanned (100.00% of total), 0 eagerly scanned
+	tuples: 2500000 removed, 2500000 remain, 0 are dead but not yet removable
+	removable cutoff: 35067419, which was 0 XIDs old when operation ended
+	new relfrozenxid: 35067408, which is 1 XIDs ahead of previous value
+	frozen: 0 pages from table (0.00% of total) had 0 tuples frozen
+	visibility map: 61729 pages set all-visible, 0 pages set all-frozen (0 were all-visible)
+	index scan needed: 61729 pages from table (100.00% of total) had 2500000 dead item identifiers removed
+	index "wide_pkey": pages: 13712 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_a_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_b_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_c_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_d_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_e_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_f_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_g_idx": pages: 13713 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	index "wide_h_idx": pages: 36045 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+	avg read rate: 29.172 MB/s, avg write rate: 29.023 MB/s
+	buffer usage: 199125 hits, 132028 reads, 131353 dirtied
+	WAL usage: 268481 records, 4 full page images, 69446627 bytes, 32768 full page image bytes, 0 buffers full
+	memory usage: dead item storage 2.58 MB accumulated across 1 reset (limit 1024.00 MB each)
+	system usage: CPU: user: 2.14 s, system: 0.66 s, elapsed: 35.35 s
+2026-11-22 01:28:27.352 UTC [1482] LOG:  automatic vacuum of table "postgres.pg_catalog.pg_depend": index scans: 1
+	pages: 0 removed, 16 remain, 16 scanned (100.00% of total), 0 eagerly scanned
+	tuples: 63 removed, 1787 remain, 0 are dead but not yet removable
+	removable cutoff: 35067420, which was 0 XIDs old when operation ended
+	new relfrozenxid: 35067407, which is 35066752 XIDs ahead of previous value
+	new relminmxid: 93, which is 92 MXIDs ahead of previous value
+	frozen: 0 pages from table (0.00% of total) had 0 tuples frozen
+	visibility map: 4 pages set all-visible, 3 pages set all-frozen (0 were all-visible)
+	index scan needed: 4 pages from table (25.00% of total) had 462 dead item identifiers removed
